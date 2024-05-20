@@ -49,6 +49,11 @@ def edit(request, pk):
 
 def delete(request,pk):
     delete_recipe=Recipe.objects.get(id=pk)
+    pic=delete_recipe.picture
+    try:
+        os.remove(f'media/{pic}')
+    except Exception:
+        pass
     delete_recipe.delete()
     return redirect('home')
 
