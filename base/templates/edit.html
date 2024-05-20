@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% comment %} {% extends "frame.html" %}
+{% block start %} {% endcomment %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    </head>
+
+    <body>
+    {% include 'navbar.html' %}
+    
+    <form method="POST"  enctype='multipart/form-data'>
+       {% csrf_token %}
+       {% comment %} <div class="mb-3">
+        <label for="picture" class="form-label">Picture</label>
+        <input type="image" name="picture" class="form-control" type="file" >
+      </div> {% endcomment %}
+      <div class="mb-3">
+        <img src="/media/{{Recipe.picture}}"  style="height :120px"></td>
+        <label for="formFile" class="form-label">Image</label>
+        <input  name="picture" class="form-control" type="file" id="Food Image" >
+      </div>
+
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" value="{{Recipe.name}}" class="form-control" id="Food Name" >
+        </div>
+        
+        <label class="form-check-label" for="exampleCheck1">Category</label>
+        <select name="category" value="{{Recipe.category}}" class="form-select" aria-label="Default select example">
+            {% if Recipe.category == 'Light/Dessert' %}
+            <option selected value="Light/Dessert">Light/Dessert</option>
+            <option value="Heavy">Drinks</option>
+                <option value="Medium">Medium</option>
+                <option value="Heavy">Heavy</option>
+
+            {% elif Recipe.category == 'Medium' %}
+                <option value="Light/Dessert">Light/Dessert</option>
+                <option value="HeaDrinks</option>
+                <option selected value="Medium">Medium</option>
+                <option value="Heavy">Heavy</option>
+
+            {% elif Recipe.category == 'Heavy' %}
+                <option  value="Light/Dessert">Light/Dessert</option>
+                <option value="Drinks">Drinks</option>
+                <option value="Medium">Medium</option>
+                <option selected value="Heavy">Heavy</option>
+
+            {% else %}
+                <option  value="Light/Dessert">Light/Dessert</option>
+                <option value="Drinks">Drinks</option>
+                <option value="Medium">Medium</option>
+                <option selected value="Heavy">Heavy</option>
+
+            {% endif %}
+        </select>
+
+        <div>
+          <label for="ingredient" class="form-label">Ingredients</label>
+          <input type="text" name="ingredients" value="{{Recipe.ingredients}}" class="form-control" id="Ingredients of food" aria-describedby="emailHelp">
+          
+          <div class="form-floating">
+            <textarea name="description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea1" style="height: 100px">{{Recipe.description}}</textarea>
+            <label for="floatingTextarea1">Description</label>
+          </div>
+
+           <div class="form-floating">
+            <textarea name="process" class="form-control"  id="process" style="height: 100px">{{Recipe.process}}</textarea>
+            <label for="process">Process</label>
+          </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+        
+        <script src="" async defer></script>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</html>
